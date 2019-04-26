@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'app-cockpit',
@@ -8,31 +8,40 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class CockpitComponent implements OnInit {
 
     @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
-    // with alias = reflects on app.cpt.html
+    // with alias ('bpCreated') = reflects on app.cpt.html
     @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
-
     // from input [(ngModel)]="newServerContent" & "newServerContent"
     //newServerName = ''; //  comentado porque não faz falta com local reference (ver HTML)
 
-    // Se aqui devia estar @ViewChild ver Section 5 Aula 70
-    newServerContent = '';
+    //newServerContent = ''; //  comentado porque não faz falta com local reference (ver HTML)
+
+    @ViewChild('serverContentInputByLocalReference') serverContentInput: ElementRef; // serverContentInputByLocalReference = ver HTML
 
     constructor() {}
 
     ngOnInit() {}
 
+    /*
+    paramVindoDeLocalRef é um HTMLElement
+    serverContentInput é um ElementRef (tem que se importar)
+    */
     onAddServer( paramVindoDeLocalRef: HTMLInputElement ) {
+        /*
         this.serverCreated.emit({
-            serverName: paramVindoDeLocalRef.value,
+            serverName: paramVindoDeLocalRef.value, // .value pq é um HTMLElement
             serverContent: this.newServerContent
+        });
+        */
+       this.serverCreated.emit({
+            serverName: paramVindoDeLocalRef.value, // .value pq é um HTMLElement
+            serverContent: this.serverContentInput.nativeElement.value
         });
     }
 
     onAddBlueprint( paramVindoDeLocalRef: HTMLInputElement ) {
         this.blueprintCreated.emit({
             serverName: paramVindoDeLocalRef.value,
-            serverContent: this.newServerContent
+            serverContent: this.serverContentInput.nativeElement.value
         });
     }
-
 }

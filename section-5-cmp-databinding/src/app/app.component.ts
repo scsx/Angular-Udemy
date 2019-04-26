@@ -27,5 +27,8 @@ export class AppComponent {
     testMethodDeleteIfNeeded() {
         console.log("I'm a custom event");
     }
+    testMethodDeleteIfNeeded2() {
+        console.log("I'm a custom event too");
+    }
 
 }

@@ -6,10 +6,6 @@
                 <a target="_blank"
                     href="https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/">https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/</a>
             </p>
-            <ol>
-                <li>Child to Parent: Sharing Data via Output() and EventEmitter</li>
-                <li>Unrelated Components: Sharing Data with a Service</li>
-            </ol>
         </div>
     </div>
 </div>
@@ -22,7 +18,8 @@
                 <app-europe></app-europe>
             </div>
             <div class="column col-6">
-                <p>This is probably the most common and straightforward method of sharing data. It works by using the <code>@Input() decorator</code> to allow data to be passed via the template.</p>
+                <p>This is probably the most common and straightforward method of sharing data. It works by using the
+                    <code>@Input() decorator</code> to allow data to be passed via the template.</p>
             </div>
         </div>
 
@@ -32,8 +29,92 @@
                 <app-africa></app-africa>
             </div>
             <div class="column col-6">
-                <p><code>ViewChild</code> allows a one component to be injected into another, giving the parent access to its attributes and functions. One caveat, however, is that child won’t be available until after the view has been initialized. This means we need to implement the <code>AfterViewInit</code> lifecycle hook to receive the data from the child. </p>
-                <p><b>Edit:</b> <code>ViewChild</code> works but throws <code>ExpressionChangedAfterItHasBeenCheckedError</code>, used <code>AfterContentInit</code> instead</p>
+                <p><code>ViewChild</code> allows a one component to be injected into another, giving the parent access
+                    to its attributes and functions. One caveat, however, is that child won’t be available until after
+                    the view has been initialized. This means we need to implement the <code>AfterViewInit</code>
+                    lifecycle hook to receive the data from the child. </p>
+                <p><b>Edit:</b> <code>ViewChild</code> works but throws
+                    <code>ExpressionChangedAfterItHasBeenCheckedError</code>, used <code>AfterContentInit</code> instead
+                </p>
+            </div>
+        </div>
+
+        <h4 class="text-light bg-success">3. Child to Parent: Sharing Data via Output() and EventEmitter</h4>
+        <div class="columns method">
+            <div class="column col-6">
+                <app-americas></app-americas>
+            </div>
+            <div class="column col-6">
+                <p>Another way to share data is to emit data from the child, which can be listed to by the parent. This
+                    approach is ideal when you want to share data changes that occur on things like button clicks, form
+                    entires, and other user events. <br>
+                    In the parent, we create a function to receive the message and set it equal to the message variable.
+                    <br>
+                    In the child, we declare a messageEvent variable with the Output decorator and set it equal to a new
+                    event emitter. Then we create a function named sendMessage that calls emit on this event with the
+                    message we want to send. Lastly, we create a button to trigger this function. <br>
+                    The parent can now subscribe to this messageEvent that’s outputted by the child component, then run
+                    the receive message function whenever this event occurs.</p>
+            </div>
+        </div>
+
+        <h4 class="text-light bg-success">4. Unrelated Components: Sharing Data with a Service</h4>
+        
+        <app-asia></app-asia>
+        
+        <br>
+        
+        <div class="columns">
+            <div class="column col-6">
+                <p>When passing data between components that lack a direct connection, such as siblings, grandchildren,
+                    etc, you should you a shared service. When you have data that should aways been in sync, I find the
+                    <a href="https://xgrommx.github.io/rx-book/content/subjects/behavior_subject/index.html"
+                        target="_blank" rel="noopener">RxJS BehaviorSubject</a> very useful in this situation.</p>
+                <p>You can also use a regular RxJS Subject for sharing data via the service, but here’s why I prefer a
+                    BehaviorSubject.</p>
+                <ul>
+                    <li>It will always return the current value on subscription - there is no need to call
+                        <code>onnext</code></li>
+                    <li>It has a <code>getValue()</code> function to extract the last value as raw data.</li>
+                    <li>It ensures that the component always receives the most recent data.</li>
+                </ul>
+                <p>In the service, we create a private BehaviorSubject that will hold the current value of the message.
+                    We define a currentMessage variable handle this data stream as an observable that will be used by
+                    the components. Lastly, we create function that calls next on the BehaviorSubject to change its
+                    value.</p>
+                <p>The parent, child, and sibling components all receive the same treatment. We inject the DataService
+                    in the constructor, then subscribe to the currentMessage observable and set its value equal to the
+                    message variable.</p>
+                <p>Now if we create a function in any one of these components that changes the value of the message.
+                    when this function is executed the new data it’s automatically broadcast to all other components.
+                </p>
+            </div>
+            <div class="column col-6">
+                <h5>Service</h5>
+                <pre><code>
+import {{ '{' }}
+    Injectable
+{{ '}' }} from '@angular/core';
+import {{ '{' }}
+    BehaviorSubject
+{{ '}' }} from 'rxjs';
+
+@Injectable()
+export class DataService {{ '{' }}
+
+    private messageSource =
+        new BehaviorSubject('Message for all!');
+    currentMessage =
+        this.messageSource.asObservable();
+
+    constructor() {{ '{' }}{{ '}' }}
+
+    changeMessage(message: string) {{ '{' }}
+        this.messageSource.next(message)
+    {{ '}' }}
+
+{{ '}' }}
+                </code></pre>
             </div>
         </div>
     </div>

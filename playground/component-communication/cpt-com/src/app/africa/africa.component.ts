@@ -1,7 +1,7 @@
 import {
     Component,
     ViewChild,
-    ngAfterContentInit
+    AfterContentInit
 } from '@angular/core';
 import {
     GhanaComponent
@@ -12,7 +12,7 @@ import {
     templateUrl: './africa.component.html',
     styles: []
 })
-export class AfricaComponent implements ngAfterContentInit {
+export class AfricaComponent implements AfterContentInit {
 
     @ViewChild(GhanaComponent) child;
 

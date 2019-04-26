@@ -26,11 +26,11 @@
             <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
             <div class="row">
                 <div class="col-xs-3">
-                    <h3><small>Odds</small></h3>
+                    <h3 class="text-center"><small>Odds</small></h3>
                     <app-odd *ngFor="let oddNumber of oddNumbers" [numero]="oddNumber"></app-odd>
                 </div>
                 <div class="col-xs-3">
-                    <h3><small>Evens</small></h3>
+                    <h3 class="text-center"><small>Evens</small></h3>
                     <app-even *ngFor="let evenNumber of evenNumbers" [numero]="evenNumber"></app-even>
                 </div>
             </div>

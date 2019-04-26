@@ -1,5 +1,5 @@
 {
-    "name": "my-first-app",
+    "name": "cpt-com",
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
@@ -20,10 +20,9 @@
         "@angular/platform-browser": "^6.0.0",
         "@angular/platform-browser-dynamic": "^6.0.0",
         "@angular/router": "^6.0.0",
-        "bootstrap": "3.3.7",
         "core-js": "^2.5.4",
         "rxjs": "6.0.0",
-        "rxjs-compat": "^6.1.0",
+        "spectre.css": "^0.5.8",
         "zone.js": "^0.8.26"
     },
     "devDependencies": {

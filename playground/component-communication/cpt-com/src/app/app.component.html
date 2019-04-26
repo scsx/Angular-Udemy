@@ -1,0 +1,40 @@
+<div class="hero hero-sm bg-dark">
+    <div class="container grid-lg">
+        <div class="hero-body">
+            <h1>Component communication</h1>
+            <p>
+                <a target="_blank"
+                    href="https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/">https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/</a>
+            </p>
+            <ol>
+                <li>Child to Parent: Sharing Data via Output() and EventEmitter</li>
+                <li>Unrelated Components: Sharing Data with a Service</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="container grid-lg">
+
+        <h4 class="text-light bg-success">1. Parent to Child: Sharing Data via Input</h4>
+        <div class="columns method">
+            <div class="column col-6">
+                <app-europe></app-europe>
+            </div>
+            <div class="column col-6">
+                <p>This is probably the most common and straightforward method of sharing data. It works by using the <code>@Input() decorator</code> to allow data to be passed via the template.</p>
+            </div>
+        </div>
+
+        <h4 class="text-light bg-success">2. Child to Parent: Sharing Data via ViewChild</h4>
+        <div class="columns method">
+            <div class="column col-6">
+                <app-africa></app-africa>
+            </div>
+            <div class="column col-6">
+                <p><code>ViewChild</code> allows a one component to be injected into another, giving the parent access to its attributes and functions. One caveat, however, is that child won’t be available until after the view has been initialized. This means we need to implement the <code>AfterViewInit</code> lifecycle hook to receive the data from the child. </p>
+                <p><b>Edit:</b> <code>ViewChild</code> works but throws <code>ExpressionChangedAfterItHasBeenCheckedError</code>, used <code>AfterContentInit</code> instead</p>
+            </div>
+        </div>
+    </div>
+</div>

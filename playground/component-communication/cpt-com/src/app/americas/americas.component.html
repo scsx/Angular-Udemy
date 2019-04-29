@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-header">
+        <div class="card-title h5">Americas</div>
+        <div class="card-subtitle text-gray">americas.component</div>
+    </div>
+    <div class="card-body">
+        <p class="text-primary">
+
+            <!-- Extra: if/else message & button for reset; all needed is {{messageFromBrazil}} -->
+
+            <button class="btn btn-sm bg-gray float-right" (click)="reset()">reset</button>
+            Message from Brazil:
+            <span class="text-dark" *ngIf="messageFromBrazil; else noMessage">{{messageFromBrazil}}</span>
+            <ng-template #noMessage>_________</ng-template>
+        </p>
+        
+        <app-brazil (messageEvent)="receiveMessage($event)"></app-brazil>
+    </div>
+</div>

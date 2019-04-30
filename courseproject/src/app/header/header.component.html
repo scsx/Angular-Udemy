@@ -1,25 +1,22 @@
-<nav>
-    <div class="navbar navbar-default">
+<nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="#" class="navbar-brand">Recipe book</a>
             </div>
-
             <div class="navbar-default">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Recipes</a></li>
-                    <li><a href="#">Shopping list</a></li>
+                    <li><a href="javascript: void(0);" (click)="onSelect('recipe')">Recipes</a></li>
+                    <li><a href="javascript: void(0);" (click)="onSelect('shopping-list')">Shopping list</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+                        <a href="javascript: void(0);" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Save data</a></li>
-                            <li><a href="#">Fetch data</a></li>
+                            <li><a href="javascript: void(0);">Save data</a></li>
+                            <li><a href="javascript: void(0);">Fetch data</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
-    </div>
 </nav>

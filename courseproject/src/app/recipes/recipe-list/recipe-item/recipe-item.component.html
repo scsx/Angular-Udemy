@@ -1,3 +1,16 @@
-<p>
-  recipe-item works!
-</p>
+<a href="javascript:void(0);" class="list-group-item clearfix" (click)="onSelected()">
+    <div class="row">
+        <div class="col-md-8">
+            <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+            <p class="list-group-item-text">{{ recipe.description }}</p>
+        </div>
+        <div class="col-md-4">
+            <!-- Como string interpolation: -->
+            <img src="{{ recipe.imagePath }}" class="img-responsive" alt="{{ recipe.name }}">
+            <!-- Como property binding: -->
+            <!-- <img [src]="recipeEl.imagePath" class="img-responsive"> -->
+            <!-- Como url: -->
+            <!-- <figure [ngStyle]="{ 'background-image': 'url(' + recipeEl.imagePath + ')'}" style="display:block; height: 200px;"></figure> -->
+        </div>
+    </div>
+</a>

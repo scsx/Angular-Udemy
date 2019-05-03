@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <h2>Until lesson 92</h2>
+            <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+            <br><br>
+            <ul class="list-group">
+                <div *ngIf="onlyOdd">
+                    <li class="list-group-item" [ngClass]="{ oddclass: odd % 2 !== 0 }"
+                        [ngStyle]="{ backgroundColor: odd % 2 !== 0 ? '#f1efe6' : 'transparent' }"
+                        *ngFor="let odd of oddNumbers">{{odd}}</li>
+                </div>
+                <!-- ISTO: -->
+                <div *ngIf="!onlyOdd">
+                    <li class="list-group-item" *ngFor="let even of evenNumbers">{{even}}</li>
+                </div>
+                <!-- VAI SER TRASNFORMADO NISTO, QUE TB É VÁLIDO (SEM * ) -->
+                <!--
+                <ng-template [ngIf]="!onlyOdd">
+                    <div>
+                        <li class="list-group-item" *ngFor="let even of evenNumbers">{{even}}</li>
+                    </div>
+                </ng-template>
+                -->
+            </ul>
+
+            <p appBasicHighlightSelector>Style me with Basic Directive</p>
+            <p appBetterHighlight>Hover me for a better Directive using @HostListener</p>
+            <p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Hover me for a better Directive
+                using @HostListener & @HostBinding & @Input</p>
+
+            <!-- Com alias & property binding com sintaxe + simples: defaultColor='yellow' - POR SER UMA STRING -->
+            <!-- <p [appBetterHighlight]="'red'"
+            defaultColor='yellow'>
+            Hover me for a better Directive using @HostListener & @HostBinding</p> -->
+        </div>
+
+        <div class="col-xs-6">
+            <h2>Lesson 92 - Custom Structural Directive</h2>
+            <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+            <br><br>
+            <ul class="list-group">
+                <div *ngIf="onlyOdd">
+                    <li class="list-group-item" [ngClass]="{ oddclass: odd % 2 !== 0 }"
+                        [ngStyle]="{ backgroundColor: odd % 2 !== 0 ? '#f1efe6' : 'transparent' }"
+                        *ngFor="let odd of oddNumbers">{{odd}}</li>
+                </div>
+                <div *appUnless="onlyOdd">
+                    <li class="list-group-item" *ngFor="let even of evenNumbers">{{even}}</li>
+                </div>
+            </ul>
+            <h4>Ng Switch</h4>
+            <div [ngSwitch]="valueForNgSwitch">
+                <p *ngSwitchCase="5">Value is 5</p>
+                <p *ngSwitchCase="10">Value is 10</p>
+                <p *ngSwitchCase="100">Value is 100</p>
+                <p *ngSwitchDefault>Value is Default</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Tests</h2>
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" (click)="readRainbow($event)">Click
+                                me</button>
+                            <button type="button" class="btn btn-success" (click)="readRainbow($event)">Click
+                                me</button>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h5>X, Y</h5>
+                        {{ location }}
+                    </div>
+                    <div class="col-md-6">
+                        <h5>DOM path</h5>
+                        <div *ngFor="let item of path">
+                            <span
+                                [ngClass]="{'label label-primary': true, 'label-success': location > 140 }">{{ item.className }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
+import { ToggleActiveService } from './toggle-active.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
+    providers: [ToggleActiveService]
 })
 export class AppComponent {
-    activeUsers = ['Max', 'Anna'];
-    inactiveUsers = ['Chris', 'Manu'];
 
-    onSetToInactive(id: number) {
-        this.inactiveUsers.push(this.activeUsers[id]);
-        this.activeUsers.splice(id, 1);
+    constructor(private toggleActiveServiceArgument: ToggleActiveService) {
+
+    }
+
+    activeUsers = this.toggleActiveServiceArgument.activeUsers;
+    inactiveUsers = this.toggleActiveServiceArgument.inactiveUsers;
+
+    /* onSetToInactive(id: number) {
+        console.log("onSetToInactive works");
     }
 
     onSetToActive(id: number) {
-        this.activeUsers.push(this.inactiveUsers[id]);
-        this.inactiveUsers.splice(id, 1);
-    }
+        console.log("onSetToActive works");
+    } */
 }

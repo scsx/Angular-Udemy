@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipes.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
     selector: 'app-recipe-list',
@@ -8,19 +9,12 @@ import { Recipe } from '../recipes.model';
 })
 export class RecipeListComponent implements OnInit {
 
-    @Output() recipeWasSelected = new EventEmitter<Recipe>();
+    recipes: Recipe[]; // starts undefined, was moved to recipe.service
 
-    recipes: Recipe[] = [ // recipes: Recipe[] inform Typescript that recipes is an array of objects type Recipe
-        new Recipe('Feijoada à brasileira', 'A junção perfeita entre várias carnes e o saboroso feijão preto', 'https://media-cdn.tripadvisor.com/media/photo-s/13/59/ea/ef/feijoada-brasileira.jpg'),
-        new Recipe('Dobrada', 'Tradicional de Portugal', 'https://www.saborintenso.com/images/receitas/Dobrada-feijao-Branco-SI-1.jpg'),
-        new Recipe('Polvo à Lagareiro','Acompanhado de uma salada e de vinho branco','https://www.saborintenso.com/images/receitas/Polvo-Lagareiro-SI-1.jpg')
-    ]; 
+    constructor(private recipeService: RecipeService) {}
 
-    constructor() {}
-
-    ngOnInit() {}
-
-    onRecipeSelected(recipe: Recipe) {
-        this.recipeWasSelected.emit(recipe);
+    ngOnInit() {
+        this.recipes = this.recipeService.getRecipes();
     }
+
 }

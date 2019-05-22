@@ -1,0 +1,37 @@
+<h2>
+    <div class="btn-group pull-right">
+        <a class="btn btn-sm btn-default" routerLink="/servers">Reload by link</a>
+        <!-- unlike the links at app.cpt (which is at root level) this link needs the '/' because otherwise it would be relative to this component;
+        routerLink="servers" would look for /servers/servers;
+        with / becomes absolut -->
+        <a class="btn btn-sm btn-default gray" (click)="onReload()">Reload programmatically</a>
+    </div>
+    
+    Servers
+</h2>
+<div class="row">
+    <div class="col-xs-12 col-sm-4">
+        <div class="list-group">
+            <!-- [queryParams]="{allowEdit: '1'}"   #### make queries ( ?allowEdit=1 ) -->
+            <!-- fragment="#loading"                #### hash ( ?allowEdit=1#content ) -->
+            <a
+            [routerLink]="['/servers', server.id]"
+            [queryParams]="{ allowEdit: server.id === 3 ? '1' : '0' }"
+            fragment="content"
+            href="#"
+            class="list-group-item"
+            *ngFor="let server of servers">
+                {{ server.name }}
+            </a>
+
+            <!-- [queryParams]="{ allowEdit: server.id === 3 ? '1' '0' }" -->
+            <!-- if it's server 3 we can edit it, otherwise no -->
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <router-outlet></router-outlet>
+        <!-- <app-edit-server></app-edit-server>
+        <hr>
+        <app-server></app-server> -->
+    </div>
+</div>

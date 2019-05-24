@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="guards">Guards</h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/">Home</a>
+                </li>
+                <li role="presentation" routerLinkActive="active"><a routerLink="servers">Servers</a></li><!-- notation 1 -->
+                <li role="presentation" routerLinkActive="active"><a [routerLink]="['users']">Users</a></li><!-- notation 2 -->
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

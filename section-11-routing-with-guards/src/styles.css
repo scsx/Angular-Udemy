@@ -1,0 +1,20 @@
+.jumbo { padding: 15px 0; border-bottom: 2px solid #222; margin-bottom: 30px; }
+
+.nav-tabs {
+    margin: 30px 0; 
+}
+.nav-tabs > li.active > a {
+    font-weight: 700;
+}
+
+h2 {
+    margin: 0 0 20px 0;
+}
+
+h3.guards {
+    color: #2c90e6;
+}
+
+.btn-default.gray {
+    background: #f4f4f4;
+}

@@ -1,4 +1,7 @@
-<a href="javascript:void(0);" class="list-group-item clearfix" (click)="onSelected()">
+<a  href="javascript:void(0);"
+    class="list-group-item clearfix receita"
+    [routerLink]="[index]"
+    routerLinkActive="active">
     <div class="row">
         <div class="col-md-8">
             <h4 class="list-group-item-heading">{{ recipe.name }}</h4>

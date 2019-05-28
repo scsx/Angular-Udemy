@@ -1,15 +1,17 @@
 <div class="row">
     <div class="col-xs-12">
-        <button class="btn btn-success">New recipe</button>
+        <button class="btn btn-success" (click)="onNewRecipe()">New recipe</button>
     </div>
 </div>
 <br>
 <div class="row">
     <div class="col-xs-12">
         <!-- [recipe] é o de recipe-item.component.ts, @Input() recipe: Recipe; -->
+        <!-- [index] é para passar o index da receita que vai ser enviado para [routerLink] em recipe-item.cpt -->
         <app-recipe-item 
-        *ngFor="let recipeEl of recipes" 
+        *ngFor="let recipeEl of recipes; let i = index" 
         [recipe]="recipeEl" 
+        [index]="i" 
         ></app-recipe-item>
 
         <!-- 

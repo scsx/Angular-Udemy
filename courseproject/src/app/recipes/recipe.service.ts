@@ -48,6 +48,11 @@ export class RecipeService {
         return this.recipes.slice(); // .slice() is not to mess the original array; creates a copy instead
     }
     
+    // for recipe-detail.cpt get through routing
+    getRecipe(index: number) {
+        return this.recipes[index];
+    }
+
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
     }

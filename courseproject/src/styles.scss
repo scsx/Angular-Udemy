@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.navbar-default .navbar-nav > .active > a {
+    font-weight: 700;
+    color: #536a8d;
+}
+
+.well.start {
+    margin-top: 54px;
+    h3 {
+        margin: 0;
+        font-style: italic;
+        color: #666;
+    }
+}
+
+a.list-group-item.receita {
+    border-radius: 0;
+    &.active {
+        background-color: #449aa9;
+        border-color: #449aa9;
+    }
+}

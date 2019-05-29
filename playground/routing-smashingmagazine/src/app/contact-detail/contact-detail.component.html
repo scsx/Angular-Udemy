@@ -1,0 +1,12 @@
+<div class="card">
+    <img src="http://www.meetfactory.cz/media/images/thumbs/Black_Lips-7-800x.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">#{{ contact?.id }} {{ contact?.name }}</h5>
+        <p class="card-text"><b><a href="{{ contact?.email }}">{{ contact?.email }}</a></b></p>
+        <p>Used Elvis operator <code>contact?.id</code> because results get some time to display</p>
+        <a [routerLink]="'/contacts'" href="javascript:void(0);" class="btn btn-primary">back</a>
+
+        <!-- <a [routerLink]="[ contact.name, '@blacklips.com']" href="javascript:void(0);" class="btn btn-primary">See more</a> -->
+
+    </div>
+</div>

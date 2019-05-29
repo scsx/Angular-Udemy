@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col jumbo">
+            <hr>
+            <h1 class="bg-info text-white">A Complete Guide To Routing In Angular</h1>
+            <h3 class="text-dark">smashingmagazine</h3>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <div class="list-group">
+                <a [routerLink]="'/contacts'" routerLinkActive="active" href="javascript:void(0);" class="list-group-item list-group-item-action">Contacts</a>
+                <a href="javascript:void(0);" class="list-group-item list-group-item-action">Lorem</a>
+            </div>
+        </div>
+        <div class="col">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

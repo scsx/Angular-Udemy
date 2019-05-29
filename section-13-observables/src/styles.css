@@ -1,0 +1,19 @@
+.testsnack {
+    margin-top: 50px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.testsnack .q {
+    background: #d3e0da;
+}
+
+.testsnack b {
+    width: 70%;
+    display: block;
+    margin-left: 15%;
+}
+
+.testsnack a {
+    color: #337ab7;
+}

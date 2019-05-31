@@ -1,29 +1,36 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-            <a routerLink="/">Home</a>
-            <a [routerLink]="['user', 1]">User 1</a>
-            <a [routerLink]="['user', 2]">User 2</a>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="list-group testsnack">
-                <div class="list-group">
-                    <div class="list-group-item q">
-                        <b>Choose any of these useless actions?</b>
-                    </div>
-                    <a href="#" class="list-group-item">Choose which</a>
-                    <a href="#" class="list-group-item">Never use</a>
-                    <a href="#" class="list-group-item">Allways use</a>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="btn-group">
+                    <a class="btn btn-default" routerLink="/">Home</a>
+                    <a class="btn btn-default" [routerLink]="['user', 1]">User 1</a>
+                    <a class="btn btn-default" [routerLink]="['user', 2]">User 2</a>
                 </div>
+            </div>
+        </div>
+        <hr>
+
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="2">
+                    <p class="text-center">Check here if I've been activated with emitter or subject:</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b *ngIf="userActivated">Activated from user.component with service and Emitter (observable?)!</b>
+                </td>
+                <td>
+                    <b *ngIf="userActivatedFromSubject">Activated from user.component with service and Subject!</b>
+                    <b *ngIf="userActivatedFromSubject" style="color:red">This is the recommended way</b>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>

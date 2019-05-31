@@ -1,1 +1,6 @@
 <p>User with <strong>ID {{ id }}</strong> was loaded</p>
+
+<div class="btn-group">
+    <button class="btn btn-primary" (click)="onActivate()">Activate using EMITTER</button>
+    <button class="btn btn-success" (click)="onActivateSubject()">Activate using SUBJECT</button>
+</div>

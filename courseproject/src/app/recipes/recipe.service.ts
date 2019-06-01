@@ -1,6 +1,6 @@
 // service will be added to recipe.component -> providers: [RecipeService] to be available only there and it's children
+import { Injectable } from '@angular/core';
 
-import { EventEmitter, Injectable } from '@angular/core';
 import { Recipe } from './recipes.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
@@ -8,8 +8,6 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 @Injectable()
 
 export class RecipeService {
-
-    recipeSelectedEmitter = new EventEmitter<Recipe>();
 
     // recipes: Recipe[] inform Typescript that recipes is an array of objects of type Recipe
     private recipes: Recipe[] = [

@@ -1,0 +1,6 @@
+body { background: #05386b; }
+body h1 { color: #fff; margin-bottom: 30px; }
+.well { background: #edf5e1; border-radius: 0; border-color: #0a0a62; }
+form.well label { color: #1d6b5b; text-transform: uppercase; }
+form.well label.radio-inline { text-transform: capitalize; }
+form.well .btn.btn-warning { margin-bottom: 15px; }

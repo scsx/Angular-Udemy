@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <h1>Template Driven Forms</h1>
+            <form class="well" (ngSubmit)="onSubmit(formElReferencia)" #formElReferencia="ngForm">
+                <!-- #formElReferencia - local ref -->
+                <!-- #formElReferencia="ngForm" it's a way to get access to the javascript object that angular created automatically -->
+                <!-- can be used for ex: [disabled]="!formElReferencia.valid" -->
+                <div class="btn-group">
+                    <button class="btn btn-warning" type="button" (click)="populateFields()">Populate fields</button>
+                    <button class="btn btn-default" type="button" (click)="suggestUserName()">Just name with
+                        form.patchValue</button>
+                </div>
+
+                <div id="user-data" ngModelGroup="userData" #userDataRef="ngModelGroup">
+                    <!-- ngModelGroup groups fields on the Javascript object; it also gains controls like ".valid" and classes like "ng-dirty" -->
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" ngModel name="username" required>
+                        <!-- a) NO BINDING: ngModel, without [()], is the same directive but it's part of FormsModule -->
+                        <!-- required is the HTML Attr; will influence NgForm.valid = false -->
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Mail</label>
+                        <input type="email" id="email" class="form-control" [ngModel]="defaultEmailTS" name="email"
+                            required email #emailLocalReference="ngModel">
+                        <!-- email is not HTML Attr, comes with angular; will influence NgForm.valid = false -->
+                        <span class="help" *ngIf=" !emailLocalReference.valid && emailLocalReference.touched ">Enter a
+                            valid email!</span>
+                    </div>
+                </div>
+
+                <span class="help" *ngIf="!userDataRef.valid && userDataRef.touched">User data *group* is
+                    invalid!</span>
+
+                <div class="form-group">
+                    <label class="radio-inline" *ngFor="let gen of genders">
+                        <input type="radio" name="gender" ngModel [value]="gen">
+                        {{ gen }}
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="secret">Secret Question</label>
+                    <select id="secret" class="form-control" [ngModel]="defaultQuestionTS" name="secret">
+                        <option value="pet">Your first Pet?</option>
+                        <option value="teacher">Your first teacher?</option>
+                    </select>
+                    <!-- b) ONE-WAY BINDING: [ngModel], without (), sets default value; value is var from TS -->
+                </div>
+                <div class="form-group">
+                    <textarea name="questionAnswer" rows="3" class="form-control" [(ngModel)]="answer"></textarea>
+                    <!-- c) TWO-WAY BINDING: [(ngModel)], responds to form -->
+                    <br>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Your reply" value="{{ answer }}"
+                            #textToCopy>
+                        <!-- extra: click to copy -->
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" (click)="onCopy(textToCopy)">copy
+                                answer</button>
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div class="btn-group">
+                    <button class="btn btn-success" type="submit" [disabled]=" !formElReferencia.valid ">Submit</button>
+                    <button class="btn btn-default" type="button" (click)="onSubmitWithViewChild()">Use ViewChild and
+                        display data below</button>
+                </div>
+            </form>
+
+            <div class="well" *ngIf="submitted">
+                <h3>The data</h3>
+                <p>Username: <b>{{ finalData.username }}</b></p>
+                <p>Mail: <b>{{ finalData.email }}</b></p>
+                <p>Secret Question: Your first <b>{{ finalData.secretQuestion }}</b></p>
+                <p>Answer: <b>{{ finalData.answer }}</b></p>
+                <p>Gender: <b>{{ finalData.gender }}</b></p>
+            </div>
+
+        </div>
+    </div>
+</div>

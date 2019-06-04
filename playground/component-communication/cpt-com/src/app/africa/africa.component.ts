@@ -14,6 +14,7 @@ import {
 })
 export class AfricaComponent implements AfterContentInit {
 
+    // check for the need of 2nd argument on Angular8
     @ViewChild(GhanaComponent) child;
 
     constructor() {}

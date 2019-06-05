@@ -1,30 +1,82 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            class="form-control">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>
+                <div class="btn-group pull-right">
+                    <div class="btn btn-default" type="button" (click)="fillForm()">Fill form</div>
+                    <div class="btn btn-default" type="button" (click)="fillName()">Fill name</div>
+                    <div class="btn btn-default" type="button" (click)="resetForm()">Reset</div>
+                </div>
+                Reactive forms
+            </h1>
+
+            <!-- associate with form created on TS -->
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+                <div formGroupName="userDigitalData">
+                    <h4>Digital info</h4>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" formControlName="ctrlUsername">
+                        <span
+                        *ngIf="!signupForm.get('userDigitalData.ctrlUsername').valid && signupForm.get('userDigitalData.ctrlUsername').touched"
+                        class="help-block">
+                            Enter a valid username!
+                            <span
+                            class="label label-danger"
+                            *ngIf="signupForm.get('userDigitalData.ctrlUsername').errors['nameIsForbidden']">
+                                <!-- .errors is property, inspectable on console; check for 'nameIsForbidden' that we defined -->
+                                This name is forbidden
+                            </span>
+                            <span
+                            class="label label-warning"
+                            *ngIf="signupForm.get('userDigitalData.ctrlUsername').errors['required']">
+                                <!-- now check for 'required' which is defined by angular -->
+                                Cannot be empty!
+                            </span>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" class="form-control" formControlName="ctrlEmail">
+                        <span class="label label-info validating">validating</span>
+                        <span
+                        *ngIf="!signupForm.get('userDigitalData.ctrlEmail').valid && signupForm.get('userDigitalData.ctrlEmail').touched"
+                        class="help-block">Enter a valid email!</span>
+                    </div>
+                </div><!-- end of nested group -->
+
+                <h4>Personal</h4>
+                <div class="radio" *ngFor="let gender of genders">
+                    <label>
+                        <input type="radio" [value]="gender" formControlName="ctrlGender">
+                        {{ gender }}
+                    </label>
+                </div>
+
+                <div formArrayName="ctrlArrHobbies">
+                    <h4>Hobbies</h4>
+                    <div class="hobby"
+                        *ngFor="let hobbyControl of signupForm.get('ctrlArrHobbies').controls;
+                        let i = index">
+                        <!-- .controls is property, inspectable on console -->
+                        <input type="text" class="form-control" [formControlName]="i">
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="button" (click)="onAddHobby()">Add hobby</button>
+                    </div>
+
+                </div>
+
+                <div class="alert alert-danger" *ngIf="!signupForm.valid && signupForm.touched">
+                    <b>Enter valid data!</b>
+                </div>
+
+                <br>
+                <button class="btn btn-lg btn-success" type="submit">Submit</button>
+            </form>
+
+
         </div>
-        <div class="form-group">
-          <label for="email">email</label>
-          <input
-            type="text"
-            id="email"
-            class="form-control">
-        </div>
-        <div class="radio" *ngFor="let gender of genders">
-          <label>
-            <input
-              type="radio"
-              [value]="gender">{{ gender }}
-          </label>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
-      </form>
     </div>
-  </div>
 </div>

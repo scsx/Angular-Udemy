@@ -1,0 +1,27 @@
+body {
+    padding-top: 40px;
+    background: #ffff8f;
+}
+
+.well.super {
+    background: #f0e27a;
+    box-shadow: none;
+    border: none;
+}
+
+.well.super span {
+    color: brown;
+}
+
+h1 {
+    margin: 0 0 20px 0;
+}
+
+h4 {
+    margin: 0 0 20px 0;
+}
+
+ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}

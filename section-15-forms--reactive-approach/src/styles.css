@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+.container {
+    margin-top: 30px;
+}
+
+input.ng-invalid.ng-touched {
+    border-color: crimson;
+}
+
+.alert {
+    margin-top: 20px
+}
+
+h1 {
+    margin-bottom: 36px
+}
+
+h4 {
+    color: #263896;
+    margin: 20px 0;
+    font-weight: 700;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #c4c4c4;
+}
+
+.hobby {
+    margin: 0 10px 10px 0;
+    display: inline-block;
+    width: auto;
+}
+
+.hobby input {
+    min-width: 0;
+    width: auto;
+    display: inline-block;
+}
+
+input.ng-pending {
+    border: 2px solid aliceblue;
+    
+    animation: blink 2s;
+    animation-iteration-count: 3;
+}
+
+@keyframes blink { 50% { border-color:#fff ; }  }
+
+.validating { display: none; }
+input.ng-pending + .validating { display: block; }

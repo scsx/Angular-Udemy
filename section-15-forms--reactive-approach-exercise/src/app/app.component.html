@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>FORM</h1>
+
+            <form [formGroup]="projForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="name">Project name</label>
+                    <input type="text" class="form-control" id="name" formControlName="projName">
+                    <span class="help-block"
+                        *ngIf="!projForm.get('projName').valid && 
+                        projForm.get('projName').touched">
+                        Name not OK
+                        <span class="label label-danger"
+                            *ngIf="projForm.get('projName')?.errors['nameIsTest']">
+                            Cannot use "test" as name!
+                        </span>
+                    </span>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="projEmail">
+                    <span class="help-block" *ngIf="!projForm.get('projEmail').valid">Email not OK</span>
+                </div>
+                <div class="form-group">
+                    <label>Project status</label>
+                    <select class="form-control" formControlName="projStatus">
+                        <option *ngFor="let st of statusPossible;
+                        let i = index" [ngValue]="st">{{ st }}</option>
+                    </select>
+                </div>
+
+                <div class="well super">
+                    <div class="form-group">
+                        <label for="email">Supervisor</label>
+                        <input type="text" class="form-control" id="super" formControlName="projSupervisor">
+                        <span class="help-block"
+                        *ngIf="!projForm.get('projSupervisor').valid && projForm.get('projSupervisor').touched">Can't be boss</span>
+                    </div>
+                </div>
+                <br>
+                <button class="btn btn-success" type="submit">Submit to console</button>
+            </form>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="well">
+                <h4>Create a Form with the following Controls and Validators</h4>
+                <ol>
+                    <li>Project Name (should not be empty)</li>
+                    <li>Mail (should not be empty and a valid email)</li>
+                    <li>Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'</li>
+                    <li>Submit Button</li>
+                </ol>
+                <p>Add your own Validator which doesn't allow "Test" as a Project Name</p>
+                <p>Also implement that Validator as an async Validator (replace the other one)</p>
+                <p>Upon submitting the form, simply print the value to the console</p>
+                <h4>Extra:</h4>
+                <p>Max's solution has a custom validator read from an external file. To document this approach a new field was created: Supervisor</p>
+            </div>
+        </div>
+    </div>
+</div>

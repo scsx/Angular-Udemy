@@ -8,6 +8,7 @@ export class ShoppingListService {
     // because we are using a copy of ingredients[] ( ingredients.slice() ) we use a EventEmitter to inform other components of the changes we might make
 
     ingredientsChanged = new Subject<Ingredient[]>();
+    ingredientBeingEdited = new Subject<number>();
 
     private ingredients: Ingredient[] = [
         new Ingredient('Azeite', 5),
@@ -17,6 +18,10 @@ export class ShoppingListService {
     
     getIngredients() {
         return this.ingredients.slice();  // .slice() to keep original array; creates a copy instead / reflects on ingredientsChanged
+    }
+    
+    getSingleIngredient(index: number) {
+        return this.ingredients[index];
     }
     
     addIngredient(ingrdt: Ingredient) {
@@ -30,8 +35,17 @@ export class ShoppingListService {
             this.addIngredient(ingrd);
         }
         */
-       this.ingredients.push(...ingredients);
-       // spread operator: converts an array to a list; without this the entire array would be added as an entry instead of 1 by 1
+       this.ingredients.push(...ingredients); // spread operator: converts an array to a list; without this the entire array would be added as an entry instead of 1 by 1
        this.ingredientsChanged.next(this.ingredients.slice()); // Emitter to inform other components of the changes we just made
+    }
+
+    updateIngredient(index: number, newIgredient: Ingredient) {
+        this.ingredients[index] = newIgredient;
+        this.ingredientsChanged.next(this.ingredients.slice()); // Emit again
+    }
+
+    deleteIngredient(index: number) {
+        this.ingredients.splice(index, 1);
+        this.ingredientsChanged.next(this.ingredients.slice()); // Emit again
     }
 }

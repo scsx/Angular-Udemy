@@ -5,8 +5,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-shopping-list',
-    templateUrl: './shopping-list.component.html',
-    styleUrls: ['./shopping-list.component.scss']
+    templateUrl: './shopping-list.component.html'
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
@@ -25,12 +24,12 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
             );
     }
 
+    onEditItem(index: number) {
+        this.slService.ingredientBeingEdited.next(index);
+    }
+
     ngOnDestroy() {
         this.subscriptionIgChange.unsubscribe();
     }
-
-    /* onIgredientAdded( ingredient: Ingredient ) {
-        this.ingredientsHere.push(ingredient);
-    } */
 
 }

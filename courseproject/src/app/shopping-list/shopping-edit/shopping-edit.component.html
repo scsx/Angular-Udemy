@@ -1,21 +1,49 @@
 <div class="well">
     <div class="row">
         <div class="col-xs-12">
-            <form>
+            <!--
+            ###
+            FORM USING TEMPLATE DRIVEN APPROACH
+            ###
+            -->
+            <form (ngSubmit)="onSubmitItem(formLocalRef)" #formLocalRef="ngForm">
                 <div class="col-xs-9 form-group">
                     <label for="ingName">Name</label>
-                    <input type="text" class="form-control" id="ingName" #nameInput>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="ingName"
+                        name="nameName"
+                        ngModel
+                        required>
                 </div>
                 <div class="col-xs-3">
                     <label for="ingAmount">Amount</label>
-                    <input type="text" class="form-control" id="ingAmount" #amountInput>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="ingAmount"
+                        name="nameAmount"
+                        ngModel
+                        required
+                        [pattern]="'^[1-9]+[0-9]*$'">
+                        <!-- built in pattern validator; to check amount if is positive -->
                 </div>
                 <br>
                 <div class="col-xs-12">
                     <div class="btn-group">
-                        <button class="btn btn-success" type="submit" (click)="onAddItem()">Add</button>
-                        <button class="btn btn-danger" type="button">Delete</button>
-                        <button class="btn btn-primary" type="button">Clear</button>
+                        <button
+                        class="btn btn-success"
+                        type="submit"
+                        [disabled]="!formLocalRef.valid">
+                            {{ editMode ? 'Update' : 'Add' }}
+                        </button>
+                        <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+                        <button
+                        class="btn btn-danger"
+                        type="button"
+                        (click)="onDelete()"
+                        *ngIf="editMode">Delete</button>
                     </div>
                 </div>
             </form>

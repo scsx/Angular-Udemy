@@ -1,11 +1,16 @@
 <div class="row">
-    <div class="col-xs-10">
-        <app-shopping-edit></app-shopping-edit>
-        <hr>
+    <div class="col-xs-6">
         <div class="list-group">
-            <a href="javascript:void(0);" class="list-group-item" *ngFor="let item of ingredientsHere">
+            <a
+            href="javascript:void(0);"
+            class="list-group-item"
+            *ngFor="let item of ingredientsHere; let i = index"
+            (click)="onEditItem(i)">
                 {{item.name}} <b>{{item.amount}}<i>{{item.unit}}</i></b>
             </a>
         </div>
+    </div>
+    <div class="col-xs-6">
+        <app-shopping-edit></app-shopping-edit>
     </div>
 </div>

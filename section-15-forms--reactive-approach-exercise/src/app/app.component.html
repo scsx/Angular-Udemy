@@ -11,8 +11,16 @@
                         *ngIf="!projForm.get('projName').valid && 
                         projForm.get('projName').touched">
                         Name not OK
-                        <span class="label label-danger"
+                        <!--
+                            .errors or ?.erros gives errors on console
+                            <span class="label label-danger"
                             *ngIf="projForm.get('projName')?.errors['nameIsTest']">
+                            Cannot use "test" as name!
+                        </span>
+                    
+                        use hasError instead: -->
+                        <span class="label label-danger"
+                            *ngIf="projForm.get('projName').hasError('nameIsTest')">
                             Cannot use "test" as name!
                         </span>
                     </span>
@@ -33,10 +41,10 @@
 
                 <div class="well super">
                     <div class="form-group">
-                        <label for="email">Supervisor</label>
+                        <label for="email">Supervisor <small>can't be 'bob' or 'ted'</small></label>
                         <input type="text" class="form-control" id="super" formControlName="projSupervisor">
-                        <span class="help-block"
-                        *ngIf="!projForm.get('projSupervisor').valid && projForm.get('projSupervisor').touched">Can't be boss</span>
+                        <span class="label label-danger"
+                        *ngIf="projForm.get('projSupervisor').hasError('wrongboss')">Can't be boss</span>
                     </div>
                 </div>
                 <br>

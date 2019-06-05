@@ -26,12 +26,14 @@
                             class="label label-danger"
                             *ngIf="signupForm.get('userDigitalData.ctrlUsername').errors['nameIsForbidden']">
                                 <!-- .errors is property, inspectable on console; check for 'nameIsForbidden' that we defined -->
+                                <!-- if throws errors to console use projForm.get('userDigitalData.ctrlUsername').hasError('nameIsForbidden') -->
                                 This name is forbidden
                             </span>
                             <span
                             class="label label-warning"
                             *ngIf="signupForm.get('userDigitalData.ctrlUsername').errors['required']">
                                 <!-- now check for 'required' which is defined by angular -->
+                                
                                 Cannot be empty!
                             </span>
                         </span>

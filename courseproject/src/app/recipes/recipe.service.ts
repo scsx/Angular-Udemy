@@ -1,5 +1,6 @@
 // service will be added to recipe.component -> providers: [RecipeService] to be available only there and it's children
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { Recipe } from './recipes.model';
 import { Ingredient } from '../shared/ingredient.model';
@@ -9,6 +10,10 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 export class RecipeService {
 
+    // created so that the ingredients can be updated with new/edited recipes from form; we've been using a copy of ingredients (.slice())
+    // changes will be seen at recipe-list.cpt, where list is displayed
+    recipesChanged = new Subject<Recipe[]>();
+    
     // recipes: Recipe[] inform Typescript that recipes is an array of objects of type Recipe
     private recipes: Recipe[] = [
         new Recipe(
@@ -53,5 +58,21 @@ export class RecipeService {
 
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
+    }
+
+    // new methods to save recipes from the form
+    addRecipe(newrec: Recipe) {
+        this.recipes.push(newrec);
+        this.recipesChanged.next(this.recipes.slice()); // emit changes
+    }
+
+    updateRecipe(index: number, newrec: Recipe) {
+        this.recipes[index] = newrec;
+        this.recipesChanged.next(this.recipes.slice()); // emit changes
+    }
+
+    deleteRecipe(index: number) {
+        this.recipes.splice(index, 1);
+        this.recipesChanged.next(this.recipes.slice()); // emit changes
     }
 }

@@ -20,3 +20,30 @@ a.list-group-item.receita {
         border-color: #449aa9;
     }
 }
+
+// form recipes
+#recipeform {
+    .clear {
+        clear: both;
+    }
+    img.img-responsive {
+        margin: 20px 0;
+    }
+
+    table {
+        margin: 0;
+        td {
+            padding: 4px 0;
+            border: none;
+            &.ing {
+                width: 66%;
+                padding-right: 6px;
+            }
+        }
+    }
+
+    input.ng-touched.ng-invalid,
+    textarea.ng-touched.ng-invalid {
+        border-color: crimson;
+    }
+}

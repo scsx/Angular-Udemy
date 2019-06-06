@@ -1,3 +1,52 @@
-<p>
-  recipe-edit works!
-</p>
+<div class="well editrec">
+
+    <form id="recipeform" [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+        <div class="btn-group pull-right">
+            <button type="submit" class="btn btn-sm btn-success" [disabled]="!recipeForm.valid">Save</button>
+            <button type="button" class="btn btn-sm btn-warning" (click)="onCancel()">Cancel</button>
+        </div>
+        <div class="clear"></div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" formControlName="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input type="text" class="form-control" id="imagePath" formControlName="imagePath" #imagePathRef>
+            <img [src]="imagePathRef.value" class="img-responsive">
+            <!-- This works fine without #imagePathRef
+            <img src="{{ recipeForm.value.imagePath }}" class="img-responsive"> -->
+        </div>
+        <div class="form-group">
+            <label>Ingredients</label>
+            <table class="table" formArrayName="ingredients">
+                <!--
+                    instead of:
+                    let ingCtrl of recipeForm.get('fieldIngredients')).controls
+                    getControls() was created (angular 8)
+                -->
+                <tr
+                    *ngFor="let ingCtrl of getControls(); let i = index"
+                    [formGroupName]="i">
+                    <td class="ing">
+                        <input type="text" class="form-control" formControlName="name">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control" formControlName="amount">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">x</button>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <button type="button" class="btn btn-primary" (click)="onAddIngredient()">Add ingredient</button>
+        </div>
+    </form>
+</div>

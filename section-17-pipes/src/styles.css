@@ -1,0 +1,67 @@
+body {
+    background: #2c2a49;
+}
+
+h1 {
+    color: #afffff;
+    text-shadow: 2px 2px #05052d;
+    margin: 35px 0;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+p {
+    color: #666;
+    margin: 10px 0 0 0;
+    font-size: 12px;
+}
+
+p.pipe {
+    color: #c3c3c3;
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+.badge {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.list-group {
+    box-shadow: 5px 4px 17px #00000087;
+}
+
+.list-group-item span.instance {
+    font-size: 12px;
+    width: 30%;
+    display: inline-block;
+}
+
+.list-group-item strong {
+    width: 30%;
+    display: inline-block;
+}
+
+.list-group-item small {
+    width: 30%;
+    display: inline-block;
+}
+
+.form-control {
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.btn-warning {
+    font-weight: 400;
+    color: #333;
+    background-color: #ec971f;
+    border-color: #d58512;
+}
+
+.badge.list-group-item-xxx {
+    color: #333;
+}

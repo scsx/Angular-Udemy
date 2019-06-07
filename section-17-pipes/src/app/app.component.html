@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Servers || Pipes</h1>
+
+            <input type="text" class="form-control" [(ngModel)]="filteredStatus" placeholder="filter by offline/critical/stable">
+
+            <button type="button" class="btn btn-warning" (click)="addServer()">Add new to test pure/impure pipe</button>
+            <p class="pipe">
+                Adding a new server while results are filtered doesn't show them because of performance. To enable this we have to set pure: false on filter.pipe.ts. Test here while filtering by 'xxx'
+            </p>
+
+            <h2>App status (async info): {{ appStatus | async }}</h2>
+            <p class="pipe">
+                This would show 'App status (async info): [object Promise] ''; with async pipe doesn't
+            </p>
+
+            <ul class="list-group">
+                <li
+                class="list-group-item"
+                *ngFor="let server of servers | filter:filteredStatus:'status' | sortalpha "
+                [ngClass]="getStatusClasses(server)">
+
+                    <span class="badge" [ngClass]="getStatusClasses(server)">
+                        {{ server.status }}
+                    </span>
+
+                    <strong>{{ server.name }}</strong>
+
+                    <span class="instance">{{ server.instanceType | uppercase }}&bull;{{ server.instanceType | uppercase | reverseExercise }}</span>
+
+                    <small>{{ server.started | date:'EEEE, dd/MM/yyyy' }}</small>
+
+                    <p>{{ server.desc | shorten:40 }}</p>
+
+                    <!--
+                    multiple parameters:
+                    <small>{{ server.started | date:'fullDate':'otherParamater' }}</small>
+                    
+                    CHAIN PIPES
+                    Can be used but the order is important. This will cause error:
+                    <small>{{ server.started | uppercase | date:'EEEE, dd/MM/yyyy' }}</small>
+                    after uppercase pipe EEEE, DD/MM/YYYYY is not a valid date format
+                    -->
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+</div>

@@ -15,37 +15,24 @@ export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
     
     // recipes: Recipe[] inform Typescript that recipes is an array of objects of type Recipe
+    /* commented while passing to server
     private recipes: Recipe[] = [
         new Recipe(
-            'Frango na Púcara',
-            'Típico de Alcobaça',
-            'https://www.saborintenso.com/images/receitas/Frango-na-Pucara-SI-1.jpg',
+            'Frango na Púcara', 'Típico de Alcobaça', 'https://www.saborintenso.com/images/receitas/Frango-na-Pucara-SI-1.jpg',
             [
-                new Ingredient('Frango', 1),
-                new Ingredient('Azeite', 150),
-                new Ingredient('Batatas', 15)
-            ]),
-        new Recipe('Dobrada',
-            'Tradicional de Portugal',
-            'https://www.saborintenso.com/images/receitas/Dobrada-feijao-Branco-SI-1.jpg',
-            [
-                new Ingredient('Dobrada', 900),
-                new Ingredient('Chouriço', 1),
-                new Ingredient('Feijão vermelho', 100)
-            ]),
-        new Recipe('Patê de Atum',
-            'Acompanhar com tostas',
-            'https://www.saborintenso.com/images/receitas/Pate-de-Atum-SI-1.jpg',
-            [
-                new Ingredient('Atum', 2),
-                new Ingredient('Maionese', 1),
-                new Ingredient('Salsa', 5),
-                new Ingredient('Cebola', 1)
-            ]
-        )
-    ]; 
-    
+                new Ingredient('Frango', 1), new Ingredient('Azeite', 150), new Ingredient('Batatas', 15)
+            ]), ...
+    ]; */
+
+   private recipes: Recipe[] = [];
+
     constructor(private slService: ShoppingListService) {}
+
+    // get recipes from server and overwrite locally
+    setRecipes(recipesArg: Recipe[]) {
+        this.recipes = recipesArg;
+        this.recipesChanged.next(this.recipes.slice()); // emit changes, like bellow
+    }
 
     getRecipes() {
         return this.recipes.slice(); // .slice() is not to mess the original array; creates a copy instead

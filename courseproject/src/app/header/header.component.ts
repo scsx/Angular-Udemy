@@ -13,4 +13,7 @@ export class HeaderComponent {
         this.recHttpService.storeRecipes();
     }
 
+    onFetchData() {
+        this.recHttpService.fetchRecipes().subscribe();
+    }
 }

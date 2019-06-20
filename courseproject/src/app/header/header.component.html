@@ -1,15 +1,17 @@
 <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="javascript: void(0);" class="navbar-brand">Recipe book</a>
+                <a href="javascript: void(0);" class="navbar-brand">Recipe<br>book</a>
             </div>
             <div class="navbar-default">
                 <ul class="nav navbar-nav">
-                    <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+                    <li routerLinkActive="active" *ngIf="isAuthenticated"><a routerLink="/recipes">Recipes</a></li>
                     <li routerLinkActive="active"><a routerLink="/shopping-list" >Shopping list</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown" appDropdown>
+                    <li routerLinkActive="active" *ngIf="!isAuthenticated"><a routerLink="/auth">Login</a></li>
+                    <li><a href="javascript: void(0);" *ngIf="isAuthenticated" (click)="onLogout()">Logout</a></li>
+                    <li class="dropdown" appDropdown  *ngIf="isAuthenticated">
                         <a href="javascript: void(0);" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="javascript: void(0);" (click)="onSaveData()">Save data</a></li>

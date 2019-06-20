@@ -1,10 +1,21 @@
-.navbar-default .navbar-nav > .active > a {
+body {
+    font-family: "Segoe UI", -apple-system, system-ui, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif
+}
+
+.navbar-default {
+    border-left: none;
+    border-top: none;
+    border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-nav>.active>a {
     font-weight: 700;
     color: #536a8d;
 }
 
 .well.start {
     margin-top: 54px;
+
     h3 {
         margin: 0;
         font-style: italic;
@@ -15,6 +26,7 @@
 
 a.list-group-item.receita {
     border-radius: 0;
+
     &.active {
         background-color: #449aa9;
         border-color: #449aa9;
@@ -26,15 +38,18 @@ a.list-group-item.receita {
     .clear {
         clear: both;
     }
+
     img.img-responsive {
         margin: 20px 0;
     }
 
     table {
         margin: 0;
+
         td {
             padding: 4px 0;
             border: none;
+
             &.ing {
                 width: 66%;
                 padding-right: 6px;
@@ -45,5 +60,58 @@ a.list-group-item.receita {
     input.ng-touched.ng-invalid,
     textarea.ng-touched.ng-invalid {
         border-color: crimson;
+    }
+}
+
+h2.pagetitle {
+    text-transform: uppercase;
+    font-weight: 900;
+    margin: 30px 0;
+    color: #a9bac3;
+}
+
+a.navbar-brand {
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #fff !important;
+    padding: 8px 20px;
+    line-height: 17px;
+    background: #78909c;
+}
+
+// loading spinner
+.lds-circle {
+    display: inline-block;
+    transform: translateZ(1px);
+}
+
+.lds-circle > div {
+    display: inline-block;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border-radius: 50%;
+    background: #78909c;
+    animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes lds-circle {
+
+    0%,
+    100% {
+        animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    }
+
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(1800deg);
+        animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    }
+
+    100% {
+        transform: rotateY(3600deg);
     }
 }

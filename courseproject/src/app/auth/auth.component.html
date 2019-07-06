@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 col-md-offset-4">
         <h2 class="pagetitle">Login</h2>
 
         <!-- Show spinner (is a component) -->
@@ -7,12 +7,19 @@
             <app-spinner></app-spinner>
         </div>
 
-        <!-- Show alert if error -->
+        <!-- SHOW ALERT IF ERROR (3 ways:) -->
+        <!-- (1) Static
         <div class="alert alert-danger" *ngIf="hasError">
             <p><b>
                 {{ hasError }}
             </b></p>
-        </div>
+        </div>-->
+
+        <!-- (2) With Cpt (AlertCpt) and ngIf
+        <app-alert [message]="hasError" *ngIf="hasError" (close)="onHandleError()"></app-alert> -->
+
+        <!-- (3) Cpt (AlertCpt) created programmatically; appPlaceholder comes from directive -->
+        <ng-template appPlaceholder></ng-template>
 
         <!-- Show form unless it has been submitted and is loading -->
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
@@ -34,9 +41,9 @@
                     {{ isLoginMode ? 'Sign up' : 'Login'}}
                 </button>
             </div>
-
             <br>
-            <p>111111</p>
+            <br>
+            <p><small>111111</small></p>
         </form>
     </div>
 </div>

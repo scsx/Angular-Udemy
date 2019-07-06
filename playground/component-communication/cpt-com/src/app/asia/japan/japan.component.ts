@@ -18,7 +18,7 @@ export class JapanComponent implements OnInit {
     constructor(private data: DataService) {}
 
     ngOnInit() {
-        this.data.currentMessage.subscribe(messageAcross => this.messageInJapan = messageAcross)
+        this.data.currentMessage.subscribe(messageAcross => this.messageInJapan = messageAcross);
     }
 
 }

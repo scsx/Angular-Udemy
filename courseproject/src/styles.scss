@@ -115,3 +115,28 @@ a.navbar-brand {
         transform: rotateY(3600deg);
     }
 }
+
+/* Dynami Component Alert */
+.backdrop {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    background: rgba(0,0,0,.75);
+    z-index: 50;
+}
+.alert-box {
+    top: 30vh;
+    width: 60vw;
+    left: 20vw;
+    position: fixed;
+    background: white;
+    z-index: 51;
+    padding: 20px 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.26);
+
+    h4 {
+        color: red;
+    }
+}

@@ -11,6 +11,7 @@ import { RecipesHttpService } from '../shared/recipes-http.service';
 import { RecipeService } from './recipe.service';
 
 @Injectable({providedIn: 'root'})
+
 export class RecipesResolverService implements Resolve<Recipe[]> {
 
     constructor(private recHttp: RecipesHttpService, private recService: RecipeService) {}

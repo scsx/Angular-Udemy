@@ -1,25 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { RecipesComponent } from './recipes/recipes.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { RecipesResolverService } from './recipes/recipes-resolver.service';
-import { AuthComponent } from './auth/auth.component';
-import { AuthGuard } from './auth/auth.guard';
+// recipes routing cpts and guard were moved to it's module (recipes-routing.module)
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-    { path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard], children: [
-        { path: '', component: RecipeStartComponent }, // no pathMatch: 'full' ?
-        { path: 'new', component: RecipeEditComponent }, // new and edit are the same a)
-        { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
-        { path: ':id/edit', component: RecipeEditComponent } // new and edit are the same
-    ]},
-    { path: 'shopping-list', component: ShoppingListComponent },
-    { path: 'auth', component: AuthComponent }
+     // Lazy loaded:
+    { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule' },
+    { path: 'shopping-list', loadChildren: './shopping-list/shopping-list.module#ShoppingListModule' },
+    { path: 'auth', loadChildren: './auth/auth.module#AuthModule' }
+    // path to TS # Name of the class
+    // because it's lazy loaded cannot be imported again "eagerly" (at app.module)
+
+    //other routes were moved to their newly created modules, in either module file or new routing file
 ];
 
 /*
@@ -32,11 +25,12 @@ MAX EXPLANATION:
 */
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes)],
+    imports: [RouterModule.forRoot(appRoutes, {
+        preloadingStrategy: PreloadAllModules // preload lazy modules, instead of loading them only when they're actually needed
+        // , enableTracing: true // trace navigation info
+        })],
     exports: [RouterModule],
     providers: [RecipesResolverService]
 })
 
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule {}

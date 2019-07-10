@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from './user.model';
+import { environment } from '../../environments/environment' // just 'environment', angular will swap between dev and prod
 
 // Interface created to accomodate the response of http.post http.post<IAuthResponse> for BOTH sign up AND sign in; fields are seen here:
 // https://firebase.google.com/docs/reference/rest/auth#section-create-email-password  (Response Payload) or
@@ -23,7 +24,6 @@ export interface IAuthResponse { // is exported because it will be imported and 
 })
 export class AuthService {
 
-    myGoogleKey: string = 'AIzaSyAbvF-nIkzgFhtIz2FFKYdAdOAHi9JERPI';
     // User from user.model.ts; this Subject will reflect all changes: new, expired, etc:
     user = new BehaviorSubject<User>(null); // it used to be Subject; changed to manage the token // null, no user (see logout())
     private tokenExpirationTimer: any;
@@ -34,7 +34,7 @@ export class AuthService {
     // REF: https://firebase.google.com/docs/reference/rest/auth#section-create-email-password
     signup(email: string, password: string) {
         return this.http.post<IAuthResponse>( // return here; subscribe on ======???=====
-            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + this.myGoogleKey,
+            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + environment.firebaseAPIKey,
             {
                 email: email, // key names must be exactly like this, ver na REF em "Request Body Payload"
                 password: password,
@@ -54,7 +54,7 @@ export class AuthService {
     // REF: https://firebase.google.com/docs/reference/rest/auth#section-sign-in-email-password
     login(email: string, password: string){
         return this.http.post<IAuthResponse>(
-            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + this.myGoogleKey,
+            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + environment.firebaseAPIKey,
             {
                 email: email, // key names must be exactly like this, ver na REF em "Request Body Payload"
                 password: password,

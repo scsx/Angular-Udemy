@@ -16,7 +16,7 @@ export interface IAuthResponse { // is exported because it will be imported and 
     refreshToken:   string;
     expiresIn:      string;
     localId:        string;
-    registered?:    boolean; // this one is only used in sign in so it's optional: registered?:
+    registered?:    boolean; // this one is only used in sign in so it's optional: registered?
 }
 
 @Injectable({

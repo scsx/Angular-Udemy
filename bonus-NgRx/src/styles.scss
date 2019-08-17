@@ -7,6 +7,10 @@ $whitetransparent: #ffffffdb;
     font-family: 'Lexend Deca', sans-serif;
 }
 
+a {
+    cursor: pointer;
+}
+
 .dropdown.show .dropdown-menu,
 .btn-group.show .dropdown-menu {
     display: block;
@@ -21,11 +25,13 @@ $whitetransparent: #ffffffdb;
 .reclist {
     .list {
         a {
+            filter: grayscale(50%);
             color: $darktext;
             display: block;
             padding: 40px 20px;
             background-size: cover;
             background-position: center;
+            text-decoration: none;
             h4 {
                 color: $darktext;
                 background: $whitetransparent;
@@ -36,6 +42,16 @@ $whitetransparent: #ffffffdb;
                 background: $whitetransparent;
                 display: inline;
             }
+            &:hover {
+                filter: grayscale(0%);
+            }
+            &.active {
+                filter: grayscale(0%);
+                h4, p {
+                    background: #007bff;
+                    color: #fff;
+                }
+            }
         }
     }
 }
@@ -43,8 +59,12 @@ $whitetransparent: #ffffffdb;
 // recipe detail
 .detail {
     padding-left: 20px;
+}
 
-    .dropdown-item {
-        cursor: pointer;
+// recipe edit
+.newedit {
+    label {
+        font-weight: 700;
+        margin-top: 20px;
     }
 }

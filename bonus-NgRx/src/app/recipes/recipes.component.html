@@ -1,6 +1,11 @@
 <div class="row">
-    <div class="col-md-6">
-        <app-recipe-list></app-recipe-list>
+    <div class="col-md-12">
+        <h2 class="mb-4">Recipes <button class="btn btn-outline-success ml-2" (click)="onNewRecipe()">Add recipe</button></h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <app-recipe-list #apprecipelist></app-recipe-list>
     </div>
     <div class="col-md-6">
         <router-outlet></router-outlet>

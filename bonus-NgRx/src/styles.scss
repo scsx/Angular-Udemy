@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap');
+
+$darktext: #212135;
+$whitetransparent: #ffffffdb;
+
+* {
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+.dropdown.show .dropdown-menu,
+.btn-group.show .dropdown-menu {
+    display: block;
+}
+
+// Header
+#mainheader {
+    margin-bottom: 50px;
+}
+
+// recipe list
+.reclist {
+    .list {
+        a {
+            color: $darktext;
+            display: block;
+            padding: 40px 20px;
+            background-size: cover;
+            background-position: center;
+            h4 {
+                color: $darktext;
+                background: $whitetransparent;
+                display: inline;
+            }
+            p {
+                color: $darktext;
+                background: $whitetransparent;
+                display: inline;
+            }
+        }
+    }
+}
+
+// recipe detail
+.detail {
+    padding-left: 20px;
+
+    .dropdown-item {
+        cursor: pointer;
+    }
+}

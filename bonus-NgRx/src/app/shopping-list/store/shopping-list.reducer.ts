@@ -8,11 +8,6 @@ export interface IState { // any name
     editedIngredientIndex: number;
 }
 
-// Here we'll define the entire app state (move out of this file?)
-export interface IAppState { // any name
-    shoppingList: IState;
-}
-
 // inital state doesn't have to be a JS object but most likely it will be
 const initialState: IState = {
     ingredients: [ // the same inital state as defined in shopping-list.service.ts

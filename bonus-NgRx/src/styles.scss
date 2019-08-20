@@ -11,6 +11,10 @@ a {
     cursor: pointer;
 }
 
+img {
+    max-width: 100%;
+}
+
 .dropdown.show .dropdown-menu,
 .btn-group.show .dropdown-menu {
     display: block;
@@ -25,7 +29,7 @@ a {
 .reclist {
     .list {
         a {
-            filter: grayscale(50%);
+            filter: sepia(1);
             color: $darktext;
             display: block;
             padding: 40px 20px;
@@ -43,10 +47,10 @@ a {
                 display: inline;
             }
             &:hover {
-                filter: grayscale(0%);
+                filter: sepia(0);
             }
             &.active {
-                filter: grayscale(0%);
+                filter: sepia(0);
                 h4, p {
                     background: #007bff;
                     color: #fff;

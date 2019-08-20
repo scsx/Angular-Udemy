@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -9,7 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import * as fromApp from './store/app.reducer'; // Entire App State
+import { AuthEffects } from './auth/store/auth.effects'; // Entire App Effects
 
 @NgModule({
     declarations: [AppComponent, HeaderComponent],
@@ -19,7 +21,10 @@ import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer
         AppRoutingModule,
         SharedModule,
         CoreModule,
-        StoreModule.forRoot({ shoppingList: shoppingListReducer }) // shoppingList is any name
+        StoreModule.forRoot(fromApp.appReducer), // Entire App State
+        EffectsModule.forRoot([  // Entire App Effects
+            AuthEffects
+        ])
     ],
     bootstrap: [AppComponent],
     // providers: [LoggingService]

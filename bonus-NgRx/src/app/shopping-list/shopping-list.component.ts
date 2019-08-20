@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Ingredient } from '../shared/ingredient.model';
 import { LoggingService } from '../logging.service';
 
-import * as fromShoppingList from './store/shopping-list.reducer';
 import * as ShoppingListActions from './store/shopping-list.actions';
+import * as fromApp from '../store/app.reducer';
 
 @Component({
     selector: 'app-shopping-list',
@@ -19,7 +19,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
     constructor(
         private loggingService: LoggingService,
-        private store: Store<fromShoppingList.IAppState>
+        private store: Store<fromApp.IAppState>
         // Store< XXX > is what the reducer will "yeld"
     ) {}
 
@@ -28,7 +28,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         // select selects parts of the store, returns an observable; doesnt need unsubscribe()
         this.ingredients = this.store.select('shoppingList');
         // .subscribe() is not used here but could
-
         this.loggingService.printLog('Hello from ShoppingListComponent ngOnInit!');
     }
 

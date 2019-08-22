@@ -2,19 +2,27 @@ import { Action } from '@ngrx/store'; // Action is a Interface
 
 // this prevents typos by keeping here the value of the consts
 export const LOGIN_START = '[Auth] Login start, for effects';
-export const LOGIN = '[Auth] Login';
-export const LOGIN_FAIL = '[Auth] Login fail';
+export const AUTO_LOGIN = '[Auth] Auto login, from webstorage';
+export const AUTHENTICATE_SUCCESS = '[Auth] Login';
+export const AUTHENTICATE_FAIL = '[Auth] Login fail';
+export const SIGNUP_START = '[Auth] Signup start'; // errors will be handled by login code
+export const CLEAR_ERROR = '[Auth] Handle errors on state only (SSOT)';
 export const LOGOUT = '[Auth] Logout';
 
-export class Login implements Action {
-    readonly type = LOGIN;
+export class AuthenticateSuccess implements Action {
+    readonly type = AUTHENTICATE_SUCCESS;
     constructor (
         public payload: {
             email: string,
             id: string,
             token: string,
-            tokenExpirationDate: Date
+            tokenExpirationDate: Date,
+            redirect: boolean
         }) {}
+}
+
+export class AutoLogin implements Action {
+    readonly type = AUTO_LOGIN;
 }
 
 export class Logout implements Action {
@@ -26,10 +34,19 @@ export class LoginStart implements Action {
     constructor(public payload: { email: string, password: string}) {}
 }
 
-export class LoginFail implements Action {
-    readonly type = LOGIN_FAIL;
+export class AuthenticateFail implements Action {
+    readonly type = AUTHENTICATE_FAIL;
     constructor(public payload: string) {} // payload will be the error msg
 }
 
-// create our own types
-export type AuthActionTypes = Login | Logout | LoginStart | LoginFail;
+export class SignupStart implements Action {
+    readonly type = SIGNUP_START;
+    constructor(public payload: { email: string, password: string}) {}
+}
+
+export class ClearError implements Action {
+    readonly type = CLEAR_ERROR;
+}
+
+// create our own types; this should be only needed for reducers (ex: not effects)
+export type AuthActionTypes = AuthenticateSuccess | Logout | LoginStart | AuthenticateFail | SignupStart | ClearError | AutoLogin;

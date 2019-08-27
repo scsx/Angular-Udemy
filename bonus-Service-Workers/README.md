@@ -5,7 +5,7 @@ Service worker was not visible and not working at dev tools > application > Serv
 ## Highlights
 
 #### Installation and creation of service worker
-https://www.udemy.com/the-complete-guide-to-angular-2/learn/lecture/5401674
+https://www.udemy.com/the-complete-guide-to-angular-2/learn/lecture/5401674    
 Test was used with http-server:
 [npm install -g http-server@0.9]
 

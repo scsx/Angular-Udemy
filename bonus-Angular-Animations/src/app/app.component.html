@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Animations</h1>
+            <div class="btn-group">
+                <button class="btn btn-primary" (click)="onAnimate()">Animate!</button>
+                <button class="btn btn-info" (click)="onShrink()">Shrink!</button>
+            </div>
+
+            <div
+            [@myDivState]="myState"
+            (@myDivState.start)="animationStarted($event)"
+            (@myDivState.done)="animationEnded($event)"
+            class="someclass my-4"></div>
+            <!-- (@myDivState... Callback functions -->
+
+            <div [@wildState]="wildState" class="someclass my-4"></div>
+
+        </div>
+    </div>
+    
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" value="Some value" #input>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="onAdd(input.value)">Add Item!</button>
+        </div>
+    </div>
+    
+    <h4>List <span *ngIf="listStatus" class="badge badge-success">{{ listStatus }}</span></h4>
+
+    <div class="row">
+        <div class="col-6">
+            <ul class="list-group">
+                <li
+                class="list-group-item"
+                (click)="onDelete(item)"
+                *ngFor="let item of list"
+                [@list1]><!-- No need to bind, the state it's in is irrelevant -->
+                    {{ item }}
+                </li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <ul class="list-group">
+                <li
+                class="list-group-item"
+                (click)="onDelete(item)"
+                *ngFor="let item of list"
+                [@list2]><!-- No need to bind, the state it's in is irrelevant -->
+                    {{ item }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

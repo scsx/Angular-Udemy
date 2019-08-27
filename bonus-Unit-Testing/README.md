@@ -1,0 +1,1 @@
+Code was not tested and shouldn't be ready for Angular 8

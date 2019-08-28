@@ -80,10 +80,12 @@ export class AppComponent implements OnInit {
     }
     
     // ADD HOBBY
+    // if problems: 207 Fixing a bug -> https://www.udemy.com/the-complete-guide-to-angular-2/learn/lecture/15320312
     onAddHobby() {
         const control = new FormControl(null, Validators.required);
         (<FormArray>this.signupForm.get('ctrlArrHobbies')).push(control);
     }
+
 
     // CUSTOM VALIDATOR
     forbiddenNames( controlName: FormControl ): {[s: string]: boolean } {
